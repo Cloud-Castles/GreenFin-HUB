@@ -9,7 +9,7 @@ locals {
 
 # locals {
 #   vnet_settings = jsondecode(file("${path.module}/configuration.json"))
-# }
+# }1223
 
 module "vnet" {
   source  = "app.terraform.io/cloud-castles/vnet/azurerm"
