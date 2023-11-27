@@ -1,6 +1,14 @@
-locals {
-  vnet_settings = jsondecode(file("./config/configuration.json"))
+data "external" "vnet_settings" {
+  program = ["cat", "./config/configuration.json"]
 }
+
+locals {
+  vnet_settings = jsondecode(data.external.vnet_settings.result)
+}
+
+# locals {
+#   vnet_settings = jsondecode(file("./config/configuration.json"))
+# }
 
 module "vnet" {
   source  = "app.terraform.io/cloud-castles/vnet/azurerm"
