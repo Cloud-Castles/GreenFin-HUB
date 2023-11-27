@@ -1,5 +1,5 @@
 locals {
-  vnet_settings = jsondecode(file("${path.module}/configuration.json"))
+  vnet_settings = jsondecode(file("${path.module}/config/configuration.json"))
 }
 
 module "vnet" {
