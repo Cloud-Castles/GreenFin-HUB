@@ -1,5 +1,5 @@
 data "external" "vnet_settings" {
-  program = ["cat", "./configuration.json"]
+  program = ["cat", "configuration.json"]
 }
 
 locals {
