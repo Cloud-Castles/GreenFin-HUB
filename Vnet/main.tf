@@ -1,15 +1,6 @@
-data "external" "vnet_settings" {
-  program = ["cat", "${path.module}/configuration.json"]
-}
-
 locals {
-  vnet_settings = jsondecode(data.external.vnet_settings.result)
+  vnet_settings = jsondecode("${path.module}/configuration.json")
 }
-
-
-# locals {
-#   vnet_settings = jsondecode(file("${path.module}/configuration.json"))
-# }1223
 
 module "vnet" {
   source  = "app.terraform.io/cloud-castles/vnet/azurerm"
