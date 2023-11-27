@@ -2,18 +2,6 @@ locals {
   vnet_settings = jsondecode(file("./configuration.json"))
 }
 
-# locals {
-#   vnet_settings = jsondecode(<<JSON
-# {
-#   "resource_group": "hub-dev-rg",
-#   "location": "westeurope",
-#   "vnet_name": "hub-dev-vnet",
-#   "address_space": ["10.0.0.0/16"]
-# }
-# JSON
-# )
-# }
-
 module "vnet" {
   source  = "app.terraform.io/cloud-castles/vnet/azurerm"
   version = "1.0.0"
@@ -22,13 +10,4 @@ module "vnet" {
   vnet_name = local.vnet_settings.vnet_name
   address_space = local.vnet_settings.address_space
 }
-
-# module "vnet" {
-#   source  = "app.terraform.io/cloud-castles/vnet/azurerm"
-#   version = "1.0.0"
-#   resource_group = "hub-dev-rg"
-#   location = "westeurope"
-#   vnet_name = "hub-dev-vnet"
-#   address_space = ["10.0.0.0/16"]
-# }
 
