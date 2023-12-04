@@ -4,7 +4,7 @@ locals {
 
 module "network" {
   source  = "app.terraform.io/cloud-castles/network/azurerm"
-  version = "1.0.3"
+  version = "1.0.4"
   address_space = local.netowrk_settings.address_space
   location = local.netowrk_settings.location
   resource_group = local.netowrk_settings.resource_group
@@ -12,3 +12,4 @@ module "network" {
   vnet_name = local.netowrk_settings.vnet_name
   env = var.env
 }
+#test
