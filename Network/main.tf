@@ -11,3 +11,5 @@ module "network" {
   subnet_objects = local.netowrk_settings.subnet_objects
   vnet_name = local.netowrk_settings.vnet_name
 }
+
+#test_name
