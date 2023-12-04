@@ -2,6 +2,17 @@
     "resource_group": "hub-dev-rg",
     "location": "westeurope",
     "vnet_name": "hub-dev-vnet",
-    "address_space": ["10.0.0.0/16"]
+    "address_space": ["10.0.0.0/16"],
+    "subnet_objects": [
+      {
+        "name": "subnet1",
+        "address_prefix": "10.0.1.0/24"
+      },
+      {
+        "name": "subnet2",
+        "address_prefix": "10.0.2.0/24"
+      }
+    ]
 }
   
+
