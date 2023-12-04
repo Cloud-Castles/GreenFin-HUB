@@ -5,6 +5,6 @@ output "vnet_id" {
 
 output "subnet_ids" {
   description = "List of subnet id's"
-  value = module.network.subnet_objects
+  value = module.network.subnet_objects.name
 }
 
