@@ -1,10 +1,9 @@
 output "vnet_name" {
-  description = "List of vnet id"
-  value       = module.network.vnet_name
+  description = "ID of the created vnet"
+  value       = azurerm_virtual_network.vnet.name
 }
 
-output "subnet_objects" {
-  description = "List of subnet id's"
-  value = module.network.subnet_objects.name
+output "subnet_names" {
+  description = "List of subnet names"
+  value = [for subnet in azurerm_subnet.subnet : subnet.name]
 }
-
