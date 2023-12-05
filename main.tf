@@ -18,7 +18,7 @@ module "fw" {
   version = "1.0.1"
   location = local.netowrk_settings.location
   resource_group = local.netowrk_settings.resource_group
-  subnet_objects = local.netowrk_settings.subnet_objects
+  subnet_id = local.netowrk_settings.subnet_objects
   pip_name = local.fw_settings.pip_name
   allocation_method = local.fw_settings.allocation_method
   pip_sku = local.fw_settings.pip_sku
