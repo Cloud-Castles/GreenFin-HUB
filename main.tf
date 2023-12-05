@@ -25,7 +25,7 @@ module "fw" {
   fw_policy_name = local.fw_settings.fw_policy_name
   fw_policy_sku = local.fw_settings.fw_policy_sku
   fw_policy_proxy_enabled = local.fw_settings.fw_policy_proxy_enabled
-  dns_servers = local.fw_settings.dns_servers
+  dns_server = local.fw_settings.dns_server
   fw_name = local.fw_settings.fw_name
   fw_sku = local.fw_settings.fw_sku
   fw_tier = local.fw_settings.fw_tier
