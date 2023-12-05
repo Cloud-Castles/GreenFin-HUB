@@ -28,6 +28,8 @@ module "fw" {
   fw_sku = local.fw_settings.fw_sku
   fw_tier = local.fw_settings.fw_tier
   ip_conf_name = local.fw_settings.ip_conf_name
+
+  depends_on = [module.network]
 }
 
 
