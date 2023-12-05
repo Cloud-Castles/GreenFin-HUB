@@ -15,7 +15,7 @@ module "network" {
 
 module "fw" {
   source  = "app.terraform.io/cloud-castles/fw/azurerm"
-  version = "1.0.2"
+  version = "1.0.3"
   location = local.netowrk_settings.location
   resource_group = local.netowrk_settings.resource_group
   subnet_id = module.network.subnet_ids
@@ -29,7 +29,6 @@ module "fw" {
   fw_name = local.fw_settings.fw_name
   fw_sku = local.fw_settings.fw_sku
   fw_tier = local.fw_settings.fw_tier
-  fw_policy_id = local.fw_settings.fw_policy_id
   ip_conf_name = local.fw_settings.ip_conf_name
 }
 
