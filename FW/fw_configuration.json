@@ -1,5 +1,14 @@
 {
-    "test": "test"
+  "pip_name": "fw-pip",
+  "allocation_method": "Static",
+  "pip_sku": "Standard",
+  "fw_policy_name": "fw-policy",
+  "fw_policy_sku": "test",
+  "fw_policy_proxy_enabled": "test",
+  "dns_servers": "test",
+  "fw_name": "test-fw",
+  "fw_sku": "AZFW_VNet",
+  "fw_tier": "test",
+  "fw_policy_id": "azurerm_firewall_policy.fw_policy.id",
+  "ip_conf_name": "configuration"
 }
-  
-
