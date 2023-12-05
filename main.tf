@@ -16,7 +16,7 @@ module "network" {
 module "fw" {
   source  = "app.terraform.io/cloud-castles/fw/azurerm"
   version = "1.0.0"
-  location = local.netowrk_settings.location
+  location = azurerm_resource_group.rg.location
   resource_group = local.netowrk_settings.resource_group
   subnet_objects = local.netowrk_settings.subnet_objects
   pip_name = local.fw_settings.pip_name
