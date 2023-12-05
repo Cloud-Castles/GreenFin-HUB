@@ -15,10 +15,10 @@ module "network" {
 
 module "fw" {
   source  = "app.terraform.io/cloud-castles/fw/azurerm"
-  version = "1.0.1"
+  version = "1.0.2"
   location = local.netowrk_settings.location
   resource_group = local.netowrk_settings.resource_group
-  subnet_id = local.netowrk_settings.subnet_objects.id
+  subnet_id = module.network.subnet_ids
   pip_name = local.fw_settings.pip_name
   allocation_method = local.fw_settings.allocation_method
   pip_sku = local.fw_settings.pip_sku
