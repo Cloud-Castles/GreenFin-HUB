@@ -24,13 +24,12 @@ module "fw" {
   pip_sku = local.fw_settings.pip_sku
   fw_policy_name = local.fw_settings.fw_policy_name
   fw_policy_sku = local.fw_settings.fw_policy_sku
-  fw_policy_proxy_enabled = local.fw_settings.fw_policy_proxy_enabled
-  dns_server = local.fw_settings.dns_server
   fw_name = local.fw_settings.fw_name
   fw_sku = local.fw_settings.fw_sku
   fw_tier = local.fw_settings.fw_tier
   ip_conf_name = local.fw_settings.ip_conf_name
 }
+
 
 # module "storage_account" {
 #   source  = "app.terraform.io/cloud-castles/network/azurerm"

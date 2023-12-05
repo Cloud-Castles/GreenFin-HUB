@@ -4,8 +4,6 @@
   "pip_sku": "Standard",
   "fw_policy_name": "fw-policy",
   "fw_policy_sku": "Premium",
-  "fw_policy_proxy_enabled": "false",
-  "dns_server": "10.62.5.10",
   "fw_name": "test-fw",
   "fw_sku": "AZFW_VNet",
   "fw_tier": "Premium",
