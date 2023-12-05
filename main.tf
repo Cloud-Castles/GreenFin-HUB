@@ -11,8 +11,7 @@ module "network" {
   resource_group = local.netowrk_settings.resource_group
   subnet_objects = local.netowrk_settings.subnet_objects
   vnet_name = local.netowrk_settings.vnet_name
-  env = var.env
-}
+} 
 
 # module "fw" {
 #   source  = "app.terraform.io/cloud-castles/network/azurerm"
