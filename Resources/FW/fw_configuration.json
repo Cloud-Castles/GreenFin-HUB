@@ -1,5 +1,4 @@
 {
-  "pip_name": "fw-pip",
   "allocation_method": "Static",
   "pip_sku": "Standard",
   "fw_policy_name": "fw-policy",
