@@ -28,7 +28,7 @@ module "network" {
 
 module "fw" {
   source            = "app.terraform.io/cloud-castles/fw/azurerm"
-  version           = "1.0.8"
+  version           = "1.0.9"
   resource_group    = local.foundation_settings.resource_group
   location          = local.foundation_settings.location
   subnet_id         = lookup(module.network.subnet_ids, "AzureFirewallSubnet", null)
