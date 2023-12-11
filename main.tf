@@ -31,7 +31,7 @@ module "fw" {
   version           = "1.0.9"
   resource_group    = local.foundation_settings.resource_group
   location          = local.foundation_settings.location
-  subnet_id         = element(module.network.subnets, 0)
+  subnet_id         = element(module.network.subnet_ids, 0)
   dns_servers       = local.netowrk_settings.dns_servers
   pip_name          = local.fw_settings.pip_name
   allocation_method = local.fw_settings.allocation_method
