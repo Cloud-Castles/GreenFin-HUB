@@ -6,5 +6,6 @@
   "fw_name": "test-fw",
   "fw_sku": "AZFW_VNet",
   "fw_tier": "Premium",
-  "ip_conf_name": "configuration"
+  "ip_conf_name": "configuration",
+  "pip_name": "fw-pip"
 }
