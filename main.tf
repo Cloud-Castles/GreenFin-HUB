@@ -48,8 +48,8 @@ module "fw" {
 }
 
 module "vpngw" {
-  source                  = "app.terraform.io/cloud-castles/fw/azurerm"
-  version                 = "1.0.2"
+  source                  = "app.terraform.io/cloud-castles/vpngw/azurerm"
+  version                 = "1.0.3"
   resource_group          = local.foundation_settings.resource_group
   location                = local.foundation_settings.location
   subnet_id               = element(module.network.subnet_ids, 1)
