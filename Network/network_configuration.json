@@ -28,7 +28,7 @@
     },
     {
       "routeName": "override_route_to_spoke_f5",
-      "routeAddressPrefix": "10.62.4.0/22",
+      "routeAddressPrefix": "10.62.4.0/22"
     },
     {
       "routeName": "override_route_to_spoke_monitor",
