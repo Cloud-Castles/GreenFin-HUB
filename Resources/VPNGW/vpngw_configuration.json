@@ -3,12 +3,12 @@
   "localgw_networks": [
     {
       "local_gateway_address": "3.123.65.26",
-      "local_address_space": "[]",
+      "local_address_space": "[10.62.0.64/26]",
       "shared_key": "1234567890qazwsx"
     },
     {
       "local_gateway_address": "18.185.162.69",
-      "local_address_space": "[]",
+      "local_address_space": "[10.62.0.64/26]",
       "shared_key": "1234567890qazwsx"
     }
   ],
