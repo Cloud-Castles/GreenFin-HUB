@@ -22,6 +22,8 @@ module "network" {
   fw_private_ip_address = local.netowrk_settings.fw_private_ip_address
   dns_servers           = local.netowrk_settings.dns_servers
   vpngw_rt_routes       = local.netowrk_settings.vpngw_rt_routes
+
+  depends_on = [module.foundation]
 }
 
 
