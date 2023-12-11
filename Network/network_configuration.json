@@ -18,9 +18,7 @@
       "routeTableNameSuffix": "vpngw-rt"
     }
   ],
-  "fw_private_ip_address": [
-    "10.62.0.4"
-  ],
+  "fw_private_ip_address": "10.62.0.4",
   "vpngw_rt_routes": [
     {
       "routeName": "override_route_to_hub",

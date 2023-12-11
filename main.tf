@@ -13,7 +13,7 @@ module "foundation" {
 
 module "network" {
   source                = "app.terraform.io/cloud-castles/network/azurerm"
-  version               = "1.0.8"
+  version               = "1.0.9"
   resource_group        = local.foundation_settings.resource_group
   location              = local.foundation_settings.location
   vnet_name             = local.netowrk_settings.vnet_name
