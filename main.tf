@@ -2,7 +2,7 @@ locals {
   foundation_settings = jsondecode(file("Foundation/foundation_configuration.json"))
   netowrk_settings    = jsondecode(file("Network/network_configuration.json"))
   fw_settings         = jsondecode(file("Resources/FW/fw_configuration.json"))
-  vpngw_settings      = jsondecode(file("Resources/VPNGW/vpngw_configuration.json"))
+  # vpngw_settings      = jsondecode(file("Resources/VPNGW/vpngw_configuration.json"))
 }
 
 module "foundation" {
@@ -47,28 +47,16 @@ module "fw" {
   depends_on = [module.network]
 }
 
-module "vpngw" {
-  source                  = "app.terraform.io/cloud-castles/vpngw/azurerm"
-  version                 = "1.0.3"
-  resource_group          = local.foundation_settings.resource_group
-  location                = local.foundation_settings.location
-  subnet_id               = element(module.network.subnet_ids, 1)
-  localgw_bgp_settings    = local.vpngw_settings.localgw_bgp_settings
-  localgw_networks        = local.vpngw_settings.localgw_networks
-  vpngw_bgp_asn           = local.vpngw_settings.vpngw_bgp_asn
-  vpngw_conn_ipsec_policy = local.vpngw_settings.vpngw_conn_ipsec_policy
+# module "vpngw" {
+#   source                  = "app.terraform.io/cloud-castles/vpngw/azurerm"
+#   version                 = "1.0.3"
+#   resource_group          = local.foundation_settings.resource_group
+#   location                = local.foundation_settings.location
+#   subnet_id               = element(module.network.subnet_ids, 1)
+#   localgw_bgp_settings    = local.vpngw_settings.localgw_bgp_settings
+#   localgw_networks        = local.vpngw_settings.localgw_networks
+#   vpngw_bgp_asn           = local.vpngw_settings.vpngw_bgp_asn
+#   vpngw_conn_ipsec_policy = local.vpngw_settings.vpngw_conn_ipsec_policy
 
-  depends_on = [module.network]
-}
-
-
-
-# module "storage_account" {
-#   source  = "app.terraform.io/cloud-castles/network/azurerm"
-#   version = "1.0.0"
-# }
-
-# module "azure_function" {
-#   source  = "app.terraform.io/cloud-castles/network/azurerm"
-#   version = "1.0.0"
+#   depends_on = [module.network]
 # }
