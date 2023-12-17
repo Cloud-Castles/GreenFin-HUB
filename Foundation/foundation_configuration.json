@@ -1,5 +1,5 @@
 {
-    "resource_group": "hub-dev-rg",
+    "resource_group": "dev-hub-rg",
     "location": "westeurope"
 }
   

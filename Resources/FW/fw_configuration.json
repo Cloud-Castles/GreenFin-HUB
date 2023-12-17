@@ -1,11 +1,11 @@
 {
   "allocation_method": "Static",
   "pip_sku": "Standard",
-  "fw_policy_name": "fw-policy",
+  "fw_policy_name": "dev-fw-policy",
   "fw_policy_sku": "Premium",
-  "fw_name": "test-fw",
+  "fw_name": "dev-hub-fw",
   "fw_sku": "AZFW_VNet",
   "fw_tier": "Premium",
   "ip_conf_name": "configuration",
-  "pip_name": "fw-pip"
+  "pip_name": "dev-fw-pip"
 }

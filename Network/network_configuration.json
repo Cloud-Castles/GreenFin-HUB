@@ -1,5 +1,5 @@
 {
-  "vnet_name": "hub-dev-vnet",
+  "vnet_name": "dev-hub-vnet",
   "address_space": [
     "10.60.0.0/24"
   ],
