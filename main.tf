@@ -20,7 +20,7 @@ module "network" {
   source                = "app.terraform.io/cloud-castles/network/azurerm"
   version               = "1.2.0"
   ###########################################################
-  resource_group = module.foundation.resource_group_name
+  resource_group = local.network_settings.targetFoundationKey
   location       = "westeurope"
   ###########################################################
   for_each = {
