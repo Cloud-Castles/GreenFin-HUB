@@ -18,13 +18,13 @@ module "foundation" {
 
 module "network" {
   source                = "app.terraform.io/cloud-castles/network/azurerm"
-  version               = "1.1.7"
+  version               = "1.1.8"
   for_each = {
     for key, value in local.network_settings.vnets :
     key => value
   }
-  resource_group        = ["${module.foundation.resource_group_name}"]
-  location              = ["${module.foundation.resource_group_location}"]
+  resource_group        = module.foundation["dev-hub-rg"].resource_group_name
+  location              = module.foundation["dev-hub-rg"].location
   vnet_name             = each.key
   address_space         = each.value.address_space
   subnets               = each.value.subnets
