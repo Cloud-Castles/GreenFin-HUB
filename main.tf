@@ -7,7 +7,7 @@ locals {
 
 module "foundation" {
   source         = "app.terraform.io/cloud-castles/foundation/azurerm"
-  version        = "1.0.4"
+  version        = "1.0.5"
   name                  = local.foundation_settings.name
   location              = local.foundation_settings.location
 }
