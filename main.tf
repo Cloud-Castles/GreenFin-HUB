@@ -1,6 +1,6 @@
 locals {
   foundation_settings = jsondecode(file("Foundation/foundation_configuration.json"))
-  network_settings    = jsondecode(file("Network/network_configuration.json"))
+  # network_settings    = jsondecode(file("Network/network_configuration.json"))
   # fw_settings         = jsondecode(file("Resources/FW/fw_configuration.json"))
   # vpngw_settings      = jsondecode(file("Resources/VPNGW/vpngw_configuration.json"))
 }
@@ -8,32 +8,28 @@ locals {
 module "foundation" {
   source         = "app.terraform.io/cloud-castles/foundation/azurerm"
   version        = "1.0.4"
-  for_each = {
-    for key, value in local.foundation_settings.resource_groups :
-    key => value
-  }
-  name                  = each.value.name
-  location              = each.value.location
+  name                  = local.foundation_settings.name
+  location              = local.foundation_settings.location
 }
 
-module "network" {
-  source                = "app.terraform.io/cloud-castles/network/azurerm"
-  version               = "1.2.0"
-  ###########################################################
-  resource_group = local.network_settings.vnets.targetFoundationKey
-  location       = "westeurope"
-  ###########################################################
-  for_each = {
-    for key, value in local.network_settings.vnets :
-    key => value
-  }
-  vnets                 = local.network_settings.vnets
-  vnet_name             = local.network_settings.vnet_name
-  address_space         = each.value.address_space
-  subnets               = each.value.subnets
-  fw_private_ip_address = each.value.fw_private_ip_address
-  dns_servers           = each.value.dns_servers
-  vpngw_rt_routes       = each.value.vpngw_rt_routes
+# module "network" {
+#   source                = "app.terraform.io/cloud-castles/network/azurerm"
+#   version               = "1.2.0"
+#   ###########################################################
+#   resource_group = local.network_settings.vnets.targetFoundationKey
+#   location       = "westeurope"
+#   ###########################################################
+#   for_each = {
+#     for key, value in local.network_settings.vnets :
+#     key => value
+#   }
+#   vnets                 = local.network_settings.vnets
+#   vnet_name             = local.network_settings.vnet_name
+#   address_space         = each.value.address_space
+#   subnets               = each.value.subnets
+#   fw_private_ip_address = each.value.fw_private_ip_address
+#   dns_servers           = each.value.dns_servers
+#   vpngw_rt_routes       = each.value.vpngw_rt_routes
 
   ########################################################################
 #   vnet_name             = local.netowrk_settings.vnet_name
@@ -43,8 +39,8 @@ module "network" {
 #   dns_servers           = local.netowrk_settings.dns_servers
 #   vpngw_rt_routes       = local.netowrk_settings.vpngw_rt_routes
 
-  depends_on = [module.foundation]
-}
+#   depends_on = [module.foundation]
+# }
 
 # module "fw" {
 #   source            = "app.terraform.io/cloud-castles/fw/azurerm"
