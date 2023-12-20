@@ -21,7 +21,7 @@ module "network" {
   source                = "app.terraform.io/cloud-castles/network/azurerm"
   version               = "1.1.8"
   ###########################################################
-  resource_group = local.dev_hub_rg
+  resource_group = "dev_hub_rg"
   location       = local.dev_hub_rg.location
   ###########################################################
   for_each = {
