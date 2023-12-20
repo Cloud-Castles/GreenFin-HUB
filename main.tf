@@ -24,8 +24,8 @@ module "network" {
     key => value
   }
   ###########################################################
-  resource_group = module.foundation[each.value.targetFoundationKey].resource_group_name
-  location       = module.foundation[each.value.targetFoundationKey].resource_group_location
+  resource_group = module.foundation[each.value.dev-hub-rg].resource_group_name
+  location       = module.foundation[each.value.dev-hub-rg].resource_group_location
   ###########################################################
   vnet_name             = each.key
   address_space         = each.value.address_space
