@@ -27,8 +27,8 @@ module "network" {
     for key, value in local.network_settings.vnets :
     key => value
   }
-  vnets                 = local.netowrk_settings.vnets
-  vnet_name             = local.netowrk_settings.vnet_name
+  vnets                 = local.network_settings.vnets
+  vnet_name             = local.network_settings.vnet_name
   address_space         = each.value.address_space
   subnets               = each.value.subnets
   fw_private_ip_address = each.value.fw_private_ip_address
