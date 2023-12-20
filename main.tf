@@ -7,10 +7,10 @@ locals {
 
 module "foundation" {
   source         = "app.terraform.io/cloud-castles/foundation/azurerm"
-  version        = "1.2.5"
-  resource_groups       = each.value.resource_groups
-  name                  = local.foundation_settings.name
-  location              = local.foundation_settings.location
+  version        = "1.2.6"
+  resource_groups  = local.foundation_settings.resource_groups
+  name             = local.foundation_settings.name
+  location         = local.foundation_settings.location
 }
 
 # module "network" {
