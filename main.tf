@@ -7,7 +7,7 @@ locals {
 
 module "foundation" {
   source         = "app.terraform.io/cloud-castles/foundation/azurerm"
-  version        = "1.0.3"
+  version        = "1.0.4"
   for_each = {
     for key, value in local.foundation_settings.resource_groups :
     key => value
@@ -23,8 +23,8 @@ module "network" {
     for key, value in local.network_settings.vnets :
     key => value
   }
-  resource_group        = module.network.module.foundation.resource_group_name
-  location              = module.network.module.foundation.resource_group_location
+  resource_group        = ["${module.foundation.resource_group_name}"]
+  location              = ["${module.foundation.resource_group_location}"]
   vnet_name             = each.key
   address_space         = each.value.address_space
   subnets               = each.value.subnets
