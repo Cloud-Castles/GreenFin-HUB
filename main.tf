@@ -23,8 +23,8 @@ module "network" {
     for key, value in local.network_settings.vnets :
     key => value
   }
-  resource_group        = module.foundation["dev-hub-rg"].resource_group_name
-  location              = module.foundation["dev-hub-rg"].location
+  resource_group = module.foundation["dev-hub-rg"].name
+  location       = module.foundation["dev-hub-rg"].location
   vnet_name             = each.key
   address_space         = each.value.address_space
   subnets               = each.value.subnets
