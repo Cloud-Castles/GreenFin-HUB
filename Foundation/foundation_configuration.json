@@ -1,17 +1,13 @@
 {
-    "resource_groups": {
-        "dev-hub-rg": [
-            {
-            "name": "dev-hub-rg",
-            "location": "westeurope"
-            }
-        ],
-        "dev-hub2-rg": [
-            {
-            "name": "dev-hub2-rg",
-            "location": "westeurope"
-            }
-        ]
-    }
+    "resource_groups": [
+        {
+        "name": "dev-hub-rg",
+        "location": "westeurope"
+        },
+        {
+        "name": "dev-hub2-rg",
+        "location": "westeurope"
+        }
+    ]
 }
     
