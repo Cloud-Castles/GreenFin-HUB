@@ -34,41 +34,6 @@
           "routeAddressPrefix": "10.60.1.0/24"
         }
       ]
-    },
-    "prod-hub-vnet": {
-      "address_space": [
-        "10.70.0.0/24"
-      ],
-      "dns_servers": [
-        "10.70.5.10"
-      ],
-      "subnets": [
-        {
-          "subnetName": "ProdSubnet1",
-          "subnetNamePrefix": "10.70.0.0/26",
-          "routeTableNameSuffix": "prod-rt"
-        },
-        {
-          "subnetName": "ProdSubnet2",
-          "subnetNamePrefix": "10.70.0.64/26",
-          "routeTableNameSuffix": "prod-rt"
-        }
-      ],
-      "fw_private_ip_address": "10.70.0.4",
-      "vpngw_rt_routes": [
-        {
-          "routeName": "prod_override_route_to_hub",
-          "routeAddressPrefix": "10.70.0.0/24"
-        },
-        {
-          "routeName": "prod_override_route_to_spoke_f5",
-          "routeAddressPrefix": "10.70.4.0/22"
-        },
-        {
-          "routeName": "prod_override_route_to_spoke_monitor",
-          "routeAddressPrefix": "10.70.1.0/24"
-        }
-      ]
     }
   }
 }
