@@ -9,21 +9,16 @@ module "foundation" {
   source         = "app.terraform.io/cloud-castles/foundation/azurerm"
   version        = "1.2.6"
   resource_groups  = local.foundation_settings.resource_groups
-  name             = local.foundation_settings.name
-  location         = local.foundation_settings.location
 }
 
-# module "network" {
-#   source                = "app.terraform.io/cloud-castles/network/azurerm"
-#   version               = "1.2.0"
+module "network" {
+  source                = "app.terraform.io/cloud-castles/network/azurerm"
+  version               = "1.2.0"
+  ###########################################################
+  resource_group = module.foundation[]
+  location       = "westeurope"
 #   ###########################################################
-#   resource_group = local.network_settings.vnets.targetFoundationKey
-#   location       = "westeurope"
-#   ###########################################################
-#   for_each = {
-#     for key, value in local.network_settings.vnets :
-#     key => value
-#   }
+
 #   vnets                 = local.network_settings.vnets
 #   vnet_name             = local.network_settings.vnet_name
 #   address_space         = each.value.address_space

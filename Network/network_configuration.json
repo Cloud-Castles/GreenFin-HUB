@@ -1,6 +1,6 @@
 {
   "vnets": {
-    "dev-hub-vnet": {
+    "hub-vnet": {
       "vnet_name": "dev-hub-vnet",
       "targetFoundationKey": "dev-hub-rg",
       "address_space": [
