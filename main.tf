@@ -19,10 +19,10 @@ module "foundation" {
 
 module "network" {
   source                = "app.terraform.io/cloud-castles/network/azurerm"
-  version               = "1.1.8"
+  version               = "1.1.9"
   ###########################################################
-  resource_group = "dev_hub_rg"
-  location       = local.dev_hub_rg.location
+  resource_group = module.foundation[each.value.foundtaionTargetKey].resource_group_name
+  location       = module.foundation[each.value.foundtaionTargetKey].resource_group_location
   ###########################################################
   for_each = {
     for key, value in local.network_settings.vnets :
