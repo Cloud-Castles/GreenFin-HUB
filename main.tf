@@ -7,7 +7,7 @@ locals {
 
 module "foundation" {
   source         = "app.terraform.io/cloud-castles/foundation/azurerm"
-  version        = "1.0.1"
+  version        = "1.0.2"
   for_each = {
     for key, value in local.foundation_settings.resource_groups :
     key => value
@@ -18,7 +18,7 @@ module "foundation" {
 
 module "network" {
   source                = "app.terraform.io/cloud-castles/network/azurerm"
-  version               = "1.1.3"
+  version               = "1.1.4"
   for_each = {
     for key, value in local.network_settings.vnets :
     key => value
