@@ -7,7 +7,7 @@ locals {
 
 module "foundation" {
   source         = "app.terraform.io/cloud-castles/foundation/azurerm"
-  version        = "1.0.2"
+  version        = "1.0.3"
   for_each = {
     for key, value in local.foundation_settings.resource_groups :
     key => value
@@ -16,21 +16,25 @@ module "foundation" {
   location              = each.value.location
 }
 
-module "network" {
-  source                = "app.terraform.io/cloud-castles/network/azurerm"
-  version               = "1.1.5"
-  for_each = {
-    for key, value in local.network_settings.vnets :
-    key => value
-  }
-  resource_group        = module.network.module.foundation.resource_group_name
-  location              = module.network.module.foundation.resource_group_location
-  vnet_name             = each.key
-  address_space         = each.value.address_space
-  subnets               = each.value.subnets
-  fw_private_ip_address = each.value.fw_private_ip_address
-  dns_servers           = each.value.dns_servers
-  vpngw_rt_routes       = each.value.vpngw_rt_routes
+# module "network" {
+#   source                = "app.terraform.io/cloud-castles/network/azurerm"
+#   version               = "1.1.5"
+#   for_each = {
+#     for key, value in local.network_settings.vnets :
+#     key => value
+#   }
+#   resource_group        = module.network.module.foundation.resource_group_name
+#   location              = module.network.module.foundation.resource_group_location
+#   vnet_name             = each.key
+#   address_space         = each.value.address_space
+#   subnets               = each.value.subnets
+#   fw_private_ip_address = each.value.fw_private_ip_address
+#   dns_servers           = each.value.dns_servers
+#   vpngw_rt_routes       = each.value.vpngw_rt_routes
+
+
+
+  ########################################################################
 #   vnet_name             = local.netowrk_settings.vnet_name
 #   address_space         = local.netowrk_settings.address_space
 #   subnets               = local.netowrk_settings.subnets
@@ -38,8 +42,8 @@ module "network" {
 #   dns_servers           = local.netowrk_settings.dns_servers
 #   vpngw_rt_routes       = local.netowrk_settings.vpngw_rt_routes
 
-  depends_on = [module.foundation]
-}
+#   depends_on = [module.foundation]
+# }
 
 # module "fw" {
 #   source            = "app.terraform.io/cloud-castles/fw/azurerm"
