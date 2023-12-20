@@ -1,6 +1,45 @@
 {
   "vnets": {
     "dev-hub-vnet": {
+      "vnet_name": "dev-hub-vnet",
+      "targetFoundationKey": "dev-hub-rg",
+      "address_space": [
+        "10.60.0.0/24"
+      ],
+      "dns_servers": [
+        "10.60.5.10"
+      ],
+      "subnets": [
+        {
+          "subnetName": "AzureFirewallSubnet",
+          "subnetNamePrefix": "10.60.0.0/26",
+          "routeTableNameSuffix": "fw-rt"
+        },
+        {
+          "subnetName": "GatewaySubnet",
+          "subnetNamePrefix": "10.60.0.64/26",
+          "routeTableNameSuffix": "vpngw-rt"
+        }
+      ],
+      "fw_private_ip_address": "10.60.0.4",
+      "vpngw_rt_routes": [
+        {
+          "routeName": "override_route_to_hub",
+          "routeAddressPrefix": "10.60.0.0/24"
+        },
+        {
+          "routeName": "override_route_to_spoke_f5",
+          "routeAddressPrefix": "10.60.4.0/22"
+        },
+        {
+          "routeName": "override_route_to_spoke_monitor",
+          "routeAddressPrefix": "10.60.1.0/24"
+        }
+      ]
+    },
+    "dev-hub2-vnet": {
+      "vnet_name": "dev-hub2-vnet",
+      "targetFoundationKey": "dev-hub2-rg",
       "address_space": [
         "10.60.0.0/24"
       ],

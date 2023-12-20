@@ -12,30 +12,28 @@ module "foundation" {
     for key, value in local.foundation_settings.resource_groups :
     key => value
   }
-  name                  = each.key
+  name                  = each.value.name
   location              = each.value.location
 }
 
 module "network" {
   source                = "app.terraform.io/cloud-castles/network/azurerm"
-  version               = "1.1.9"
+  version               = "1.2.0"
   ###########################################################
-  resource_group = module.foundation[each.value.dev-hub-rg].resource_group_name
-  location       = module.foundation[each.value.dev-hub-rg].resource_group_location
+  resource_group = module.foundation.resource_group_name
+  location       = "westeurope"
   ###########################################################
-
   for_each = {
     for key, value in local.network_settings.vnets :
     key => value
   }
-  vnet_name             = each.key
+  vnets                 = local.netowrk_settings.vnets
+  vnet_name             = local.netowrk_settings.vnet_name
   address_space         = each.value.address_space
   subnets               = each.value.subnets
   fw_private_ip_address = each.value.fw_private_ip_address
   dns_servers           = each.value.dns_servers
   vpngw_rt_routes       = each.value.vpngw_rt_routes
-
-
 
   ########################################################################
 #   vnet_name             = local.netowrk_settings.vnet_name
