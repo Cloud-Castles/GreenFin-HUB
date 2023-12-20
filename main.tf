@@ -1,5 +1,6 @@
 locals {
   foundation_settings = jsondecode(file("Foundation/foundation_configuration.json"))
+  dev_hub_rg = local.foundation_settings.resource_groups["dev-hub-rg"]
   network_settings    = jsondecode(file("Network/network_configuration.json"))
   # fw_settings         = jsondecode(file("Resources/FW/fw_configuration.json"))
   # vpngw_settings      = jsondecode(file("Resources/VPNGW/vpngw_configuration.json"))
@@ -19,12 +20,14 @@ module "foundation" {
 module "network" {
   source                = "app.terraform.io/cloud-castles/network/azurerm"
   version               = "1.1.8"
+  ###########################################################
+  resource_group = local.dev_hub_rg.name
+  location       = local.dev_hub_rg.location
+  ###########################################################
   for_each = {
     for key, value in local.network_settings.vnets :
     key => value
   }
-  resource_group = module.foundation["dev-hub-rg"].name
-  location       = module.foundation["dev-hub-rg"].location
   vnet_name             = each.key
   address_space         = each.value.address_space
   subnets               = each.value.subnets
