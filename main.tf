@@ -18,7 +18,7 @@ module "foundation" {
 
 module "network" {
   source                = "app.terraform.io/cloud-castles/network/azurerm"
-  version               = "1.2.2"
+  version               = "1.2.3"
   for_each = {
     for key, value in local.network_settings.vnets :
     key => value
@@ -35,7 +35,7 @@ module "network" {
   dns_servers           = each.value.dns_servers
   ###########################################################
   # Subnet
-  subnet_name = each.value.subnetName
+  name = each.value.subnetName
   address_prefixes      = each.value.subnetNamePrefix
   ###########################################################
   # subnets               = each.value.subnets
