@@ -2,9 +2,6 @@
     "resource_groups": {
         "dev-hub-rg" : {
             "location": "westeurope"
-        },
-        "dev-hub2-rg" : {
-            "location": "westeurope"
         }
     }
 }  
