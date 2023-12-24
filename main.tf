@@ -1,6 +1,6 @@
 locals {
   foundation_settings = jsondecode(file("Foundation/foundation_configuration.json"))
-  # network_settings    = jsondecode(file("Network/network_configuration.json"))
+  network_settings    = jsondecode(file("Network/network_configuration.json"))
   # fw_settings         = jsondecode(file("Resources/FW/fw_configuration.json"))
   # vpngw_settings      = jsondecode(file("Resources/VPNGW/vpngw_configuration.json"))
 }
@@ -8,24 +8,34 @@ locals {
 module "foundation" {
   source         = "app.terraform.io/cloud-castles/foundation/azurerm"
   version        = "1.2.6"
-  resource_groups  = local.foundation_settings.resource_groups
+  for_each = {
+    for key, value in local.foundation_settings.resource_groups :
+    key => value
+  }
+  name                  = each.key
+  location              = each.value.location
 }
 
 # module "network" {
 #   source                = "app.terraform.io/cloud-castles/network/azurerm"
-#   version               = "1.2.0"
+#   version               = "1.1.9"
 #   ###########################################################
-#   resource_group = module.foundation[]
-#   location       = "westeurope"
+#   resource_group = module.foundation[each.value.dev-hub-rg].resource_group_name
+#   location       = module.foundation[each.value.dev-hub-rg].resource_group_location
 #   ###########################################################
 
-#   vnets                 = local.network_settings.vnets
-#   vnet_name             = local.network_settings.vnet_name
+#   for_each = {
+#     for key, value in local.network_settings.vnets :
+#     key => value
+#   }
+#   vnet_name             = each.key
 #   address_space         = each.value.address_space
 #   subnets               = each.value.subnets
 #   fw_private_ip_address = each.value.fw_private_ip_address
 #   dns_servers           = each.value.dns_servers
 #   vpngw_rt_routes       = each.value.vpngw_rt_routes
+
+
 
   ########################################################################
 #   vnet_name             = local.netowrk_settings.vnet_name
