@@ -35,6 +35,7 @@ module "network" {
   dns_servers           = each.value.dns_servers
   ###########################################################
   # Subnet
+  subnet_name = each.value.subnetName
   address_prefixes      = each.value.subnetNamePrefix
   ###########################################################
   # subnets               = each.value.subnets
