@@ -7,7 +7,7 @@ locals {
 
 module "foundation" {
   source         = "app.terraform.io/cloud-castles/foundation/azurerm"
-  version        = "1.2.8"
+  version        = "1.2.9"
   for_each = {
     for key, value in local.foundation_settings.resource_groups :
     key => value
