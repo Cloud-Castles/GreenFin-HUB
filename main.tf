@@ -11,12 +11,12 @@ module "foundation" {
   resource_groups  = local.foundation_settings.resource_groups
 }
 
-module "network" {
-  source                = "app.terraform.io/cloud-castles/network/azurerm"
-  version               = "1.2.0"
-  ###########################################################
-  resource_group = module.foundation[]
-  location       = "westeurope"
+# module "network" {
+#   source                = "app.terraform.io/cloud-castles/network/azurerm"
+#   version               = "1.2.0"
+#   ###########################################################
+#   resource_group = module.foundation[]
+#   location       = "westeurope"
 #   ###########################################################
 
 #   vnets                 = local.network_settings.vnets
