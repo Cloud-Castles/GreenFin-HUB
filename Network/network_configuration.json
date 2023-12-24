@@ -37,38 +37,38 @@
       ]
     },
     "dev-hub2-vnet": {
-      "targetResourceGroup": "dev-hub2-rg",
+      "targetResourceGroup": "dev-hub-test-rg",
       "address_space": [
-        "10.60.0.0/24"
+        "10.61.0.0/24"
       ],
       "dns_servers": [
-        "10.60.5.10"
+        "10.61.5.10"
       ],
       "subnets": [
         {
-          "subnetName": "AzureFirewallSubnet",
-          "subnetNamePrefix": "10.60.0.0/26",
+          "subnetName": "testSubnet",
+          "subnetNamePrefix": "10.61.0.0/26",
           "routeTableNameSuffix": "fw-rt"
         },
         {
-          "subnetName": "GatewaySubnet",
-          "subnetNamePrefix": "10.60.0.64/26",
+          "subnetName": "testSubnet2",
+          "subnetNamePrefix": "10.61.0.64/26",
           "routeTableNameSuffix": "vpngw-rt"
         }
       ],
-      "fw_private_ip_address": "10.60.0.4",
+      "fw_private_ip_address": "10.61.0.4",
       "vpngw_rt_routes": [
         {
           "routeName": "override_route_to_hub",
-          "routeAddressPrefix": "10.60.0.0/24"
+          "routeAddressPrefix": "10.61.0.0/24"
         },
         {
           "routeName": "override_route_to_spoke_f5",
-          "routeAddressPrefix": "10.60.4.0/22"
+          "routeAddressPrefix": "10.61.4.0/22"
         },
         {
           "routeName": "override_route_to_spoke_monitor",
-          "routeAddressPrefix": "10.60.1.0/24"
+          "routeAddressPrefix": "10.61.1.0/24"
         }
       ]
     }
