@@ -37,7 +37,7 @@
       ]
     },
     "dev-hub2-vnet": {
-      "targetResourceGroup": "dev-hub-test-rg",
+      "targetResourceGroup": "dev-hubtest-rg",
       "address_space": [
         "10.61.0.0/24"
       ],
