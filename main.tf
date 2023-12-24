@@ -1,7 +1,7 @@
 locals {
   foundation_settings = jsondecode(file("Foundation/foundation_configuration.json"))
   network_settings    = jsondecode(file("Network/network_configuration.json"))
-  # fw_settings         = jsondecode(file("Resources/FW/fw_configuration.json"))
+  fw_settings         = jsondecode(file("Resources/FW/fw_configuration.json"))
   # vpngw_settings      = jsondecode(file("Resources/VPNGW/vpngw_configuration.json"))
 }
 
@@ -39,33 +39,33 @@ module "network" {
   depends_on = [module.foundation]
 }
 
-# module "fw" {
-#   source            = "app.terraform.io/cloud-castles/fw/azurerm"
-#   version           = "1.0.9"
-#   for_each = {
-#     for key, value in local.network_settings.vnets :
-#     key => value
-#   }
-#   ###########################################################
-#   # Import inputs from previous Modules
-#   ###########################################################
-#   resource_group = module.foundation[each.value.targetResourceGroup].resource_group_name
-#   location       = module.foundation[each.value.targetResourceGroup].resource_group_location
-#   subnet_id      = element(module.network.subnet_ids, 0)
-#   ###########################################################
-#   fw_name           = each.key
-#   dns_servers       = each.value.dns_servers
-#   pip_name          = each.value.pip_name
-#   allocation_method = each.value.allocation_method
-#   pip_sku           = each.value.pip_sku
-#   fw_policy_name    = each.value.fw_policy_name
-#   fw_policy_sku     = each.value.fw_policy_sku
-#   fw_sku            = each.value.fw_sku
-#   fw_tier           = each.value.fw_tier
-#   ip_conf_name      = each.value.ip_conf_name
+module "fw" {
+  source            = "app.terraform.io/cloud-castles/fw/azurerm"
+  version           = "1.0.9"
+  for_each = {
+    for key, value in local.fw_settings.fws :
+    key => value
+  }
+  ###########################################################
+  # Import inputs from previous Modules
+  ###########################################################
+  resource_group = module.foundation[each.value.targetResourceGroup].resource_group_name
+  location       = module.foundation[each.value.targetResourceGroup].resource_group_location
+  subnet_id      = element(module.network.subnet_ids, 0)
+  ###########################################################
+  fw_name           = each.key
+  dns_servers       = each.value.dns_servers
+  pip_name          = each.value.pip_name
+  allocation_method = each.value.allocation_method
+  pip_sku           = each.value.pip_sku
+  fw_policy_name    = each.value.fw_policy_name
+  fw_policy_sku     = each.value.fw_policy_sku
+  fw_sku            = each.value.fw_sku
+  fw_tier           = each.value.fw_tier
+  ip_conf_name      = each.value.ip_conf_name
 
-#   depends_on = [module.network]
-# }
+  depends_on = [module.network]
+}
 
 # module "vpngw" {
 #   source                  = "app.terraform.io/cloud-castles/vpngw/azurerm"
