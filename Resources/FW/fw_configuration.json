@@ -1,11 +1,25 @@
 {
-  "allocation_method": "Static",
-  "pip_sku": "Standard",
-  "fw_policy_name": "dev-fw-policy",
-  "fw_policy_sku": "Premium",
-  "fw_name": "dev-hub-fw",
-  "fw_sku": "AZFW_VNet",
-  "fw_tier": "Premium",
-  "ip_conf_name": "configuration",
-  "pip_name": "dev-fw-pip"
+  "fws": {
+    "dev-hub-fw": {
+      "allocation_method": "Static",
+      "pip_sku": "Standard",
+      "fw_policy_name": "dev-fw-policy",
+      "fw_policy_sku": "Premium",
+      "fw_name": "dev-hub-fw",
+      "fw_sku": "AZFW_VNet",
+      "fw_tier": "Premium",
+      "ip_conf_name": "configuration",
+      "pip_name": "dev-fw-pip"
+    },
+    "dev-hub-fw2": {
+      "allocation_method": "Static",
+      "pip_sku": "Standard",
+      "fw_policy_name": "dev-fw-policy2",
+      "fw_policy_sku": "Premium",
+      "fw_sku": "AZFW_VNet",
+      "fw_tier": "Premium",
+      "ip_conf_name": "configuration",
+      "pip_name": "dev-fw-pip2"
+    }
+  }
 }

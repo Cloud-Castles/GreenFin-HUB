@@ -1,8 +1,7 @@
 {
   "vnets": {
     "hub-vnet": {
-      "vnet_name": "dev-hub-vnet",
-      "targetFoundationKey": "dev-hub-rg",
+      "targetResourceGroup": "dev-hub-rg",
       "address_space": [
         "10.60.0.0/24"
       ],
@@ -38,8 +37,7 @@
       ]
     },
     "dev-hub2-vnet": {
-      "vnet_name": "dev-hub2-vnet",
-      "targetFoundationKey": "dev-hub2-rg",
+      "targetResourceGroup": "dev-hub2-rg",
       "address_space": [
         "10.60.0.0/24"
       ],
