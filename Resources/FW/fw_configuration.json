@@ -1,6 +1,7 @@
 {
   "fws": {
     "dev-hub-fw": {
+      "targetSubnet": "AzureFirewallSubnet",
       "allocation_method": "Static",
       "pip_sku": "Standard",
       "fw_policy_name": "dev-fw-policy",

@@ -51,7 +51,8 @@ module "fw" {
   ###########################################################
   resource_group = module.foundation[each.value.targetResourceGroup].resource_group_name
   location       = module.foundation[each.value.targetResourceGroup].resource_group_location
-  subnet_id      = element(module.network.subnet_ids, 0)
+  # subnet_id      = element(module.network.subnet_ids, 0)
+  subnet_id      = module.network[each.value.targetSubnet].subnet_ids
   ###########################################################
   fw_name           = each.key
   dns_servers       = each.value.dns_servers
