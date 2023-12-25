@@ -2,6 +2,7 @@
   "fws": {
     "dev-hub-fw": {
       "targetResourceGroup": "dev-hub-rg",
+      "targetVnet": "hub-vnet",
       "targetSubnet": "AzureFirewallSubnet",
       "dns_servers": ["10.60.5.10"],
       "allocation_method": "Static",
