@@ -3,8 +3,6 @@ locals {
   network_settings    = jsondecode(file("Network/network_configuration.json"))
   fw_settings         = jsondecode(file("Resources/FW/fw_configuration.json"))
   # vpngw_settings      = jsondecode(file("Resources/VPNGW/vpngw_configuration.json"))
-  resource_group = module.foundation[each.value.targetResourceGroup].resource_group_name
-  location       = module.foundation[each.value.targetResourceGroup].resource_group_location
 }
 
 module "foundation" {
@@ -20,24 +18,24 @@ module "foundation" {
 
 module "network" {
   source                = "app.terraform.io/cloud-castles/network/azurerm"
-  version               = "1.2.6"
+  version               = "1.2.7"
   for_each = {
     for key, value in local.network_settings.vnets :
     key => value
   }
-  ###########################################################
-  # Import inputs from previous Modules
-  ###########################################################
-  resource_group = module.foundation[each.value.targetResourceGroup].resource_group_name
-  location       = module.foundation[each.value.targetResourceGroup].resource_group_location
-  ###########################################################
   vnet_name             = each.key
   address_space         = each.value.address_space
   subnets               = each.value.subnets
   fw_private_ip_address = each.value.fw_private_ip_address
   dns_servers           = each.value.dns_servers
   vpngw_rt_routes       = each.value.vpngw_rt_routes
-  
+  ###########################################################
+  # Import inputs from previous Modules
+  ###########################################################
+  resource_group = module.foundation[each.value.targetResourceGroup].resource_group_name
+  location       = module.foundation[each.value.targetResourceGroup].resource_group_location
+  ###########################################################
+
   depends_on = [module.foundation]
 }
 
@@ -48,14 +46,6 @@ module "fw" {
     for key, value in local.fw_settings.fws :
     key => value
   }
-  ###########################################################
-  # Import inputs from previous Modules
-  ###########################################################
-  resource_group = local.resource_group
-  location       = local.location 
-  subnet_id      = module.network[each.value.targetSubnet].subnet_ids
-  dns_servers    = module.network[each.value.dns_servers].dns_servers
-  ###########################################################
   fw_name           = each.key
   pip_name          = each.value.pip_name
   allocation_method = each.value.allocation_method
@@ -65,6 +55,14 @@ module "fw" {
   fw_sku            = each.value.fw_sku
   fw_tier           = each.value.fw_tier
   ip_conf_name      = each.value.ip_conf_name
+  ###########################################################
+  # Import inputs from previous Modules
+  ###########################################################
+  resource_group = module.foundation[each.value.targetResourceGroup].resource_group_name
+  location       = module.foundation[each.value.targetResourceGroup].resource_group_location
+  subnet_id      = module.network[each.value.targetSubnet].subnet_ids
+  dns_servers    = module.network[each.value.dns_servers].dns_servers
+  ###########################################################
 
   depends_on = [module.network]
 }
