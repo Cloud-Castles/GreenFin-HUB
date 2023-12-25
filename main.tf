@@ -23,18 +23,19 @@ module "network" {
     for key, value in local.network_settings.vnets :
     key => value
   }
-  vnet_name             = each.key
-  address_space         = each.value.address_space
-  subnets               = each.value.subnets
-  fw_private_ip_address = each.value.fw_private_ip_address
-  dns_servers           = each.value.dns_servers
-  vpngw_rt_routes       = each.value.vpngw_rt_routes
   ###########################################################
   # Import inputs from previous Modules
   ###########################################################
   resource_group = module.foundation[each.value.targetResourceGroup].resource_group_name
   location       = module.foundation[each.value.targetResourceGroup].resource_group_location
   ###########################################################
+
+  vnet_name             = each.key
+  address_space         = each.value.address_space
+  subnets               = each.value.subnets
+  fw_private_ip_address = each.value.fw_private_ip_address
+  dns_servers           = each.value.dns_servers
+  vpngw_rt_routes       = each.value.vpngw_rt_routes
 
   depends_on = [module.foundation]
 }
@@ -46,6 +47,15 @@ module "fw" {
     for key, value in local.fw_settings.fws :
     key => value
   }
+  ###########################################################
+  # Import inputs from previous Modules
+  ###########################################################
+  resource_group = module.foundation[each.value.targetResourceGroup].resource_group_name
+  location       = module.foundation[each.value.targetResourceGroup].resource_group_location
+  dns_servers    = module.network[each.value.dns_servers].dns_servers
+  subnet_id = module.network.subnet_ids[each.value.targetSubnet]
+  ###########################################################
+
   fw_name           = each.key
   pip_name          = each.value.pip_name
   allocation_method = each.value.allocation_method
@@ -55,14 +65,7 @@ module "fw" {
   fw_sku            = each.value.fw_sku
   fw_tier           = each.value.fw_tier
   ip_conf_name      = each.value.ip_conf_name
-  ###########################################################
-  # Import inputs from previous Modules
-  ###########################################################
-  resource_group = module.foundation[each.value.targetResourceGroup].resource_group_name
-  location       = module.foundation[each.value.targetResourceGroup].resource_group_location
-  subnet_id      = module.network[each.value.targetSubnet].subnet_ids
-  dns_servers    = module.network[each.value.dns_servers].dns_servers
-  ###########################################################
+
 
   depends_on = [module.network]
 }
@@ -81,4 +84,3 @@ module "fw" {
 #   depends_on = [module.network]
 # }
 
-#test123
