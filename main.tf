@@ -61,7 +61,7 @@ module "fw" {
   resource_group = module.foundation[each.value.targetResourceGroup].resource_group_name
   location       = module.foundation[each.value.targetResourceGroup].resource_group_location
   subnet_id      = module.network[each.value.targetSubnet].subnet_ids
-  dns_servers    = module.network[each.value.dns_servers]
+  dns_servers    = module.network[each.value.dns_servers].dns_servers
   ###########################################################
 
   depends_on = [module.network]
