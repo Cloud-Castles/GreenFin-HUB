@@ -1,6 +1,7 @@
 {
   "fws": {
     "dev-hub-fw": {
+      "targetResourceGroup": "dev-hub-rg",
       "targetSubnet": "AzureFirewallSubnet",
       "allocation_method": "Static",
       "pip_sku": "Standard",
