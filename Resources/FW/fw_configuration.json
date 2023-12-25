@@ -3,7 +3,7 @@
     "dev-hub-fw": {
       "targetResourceGroup": "dev-hub-rg",
       "targetSubnet": "AzureFirewallSubnet",
-      "dns_servers": "10.60.5.10",
+      "dns_servers": ["10.60.5.10"],
       "allocation_method": "Static",
       "pip_sku": "Standard",
       "fw_policy_name": "dev-fw-policy",
