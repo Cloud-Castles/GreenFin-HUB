@@ -3,6 +3,8 @@ locals {
   network_settings    = jsondecode(file("Network/network_configuration.json"))
   fw_settings         = jsondecode(file("Resources/FW/fw_configuration.json"))
   # vpngw_settings      = jsondecode(file("Resources/VPNGW/vpngw_configuration.json"))
+  resource_group = module.foundation[each.value.targetResourceGroup].resource_group_name
+  location       = module.foundation[each.value.targetResourceGroup].resource_group_location
 }
 
 module "foundation" {
@@ -49,13 +51,12 @@ module "fw" {
   ###########################################################
   # Import inputs from previous Modules
   ###########################################################
-  resource_group = module.foundation[each.value.targetResourceGroup].resource_group_name
-  location       = module.foundation[each.value.targetResourceGroup].resource_group_location
-  # subnet_id      = element(module.network.subnet_ids, 0)
+  resource_group = local.resource_group
+  location       = local.location 
   subnet_id      = module.network[each.value.targetSubnet].subnet_ids
+  dns_servers    = module.network[each.value.dns_servers].dns_servers
   ###########################################################
   fw_name           = each.key
-  dns_servers       = each.value.dns_servers
   pip_name          = each.value.pip_name
   allocation_method = each.value.allocation_method
   pip_sku           = each.value.pip_sku
