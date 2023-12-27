@@ -66,7 +66,6 @@ module "fw" {
   fw_tier           = each.value.fw_tier
   ip_conf_name      = each.value.ip_conf_name
 
-
   depends_on = [module.network]
 }
 
