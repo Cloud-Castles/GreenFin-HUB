@@ -34,12 +34,31 @@ module "network" {
   subnets               = each.value.subnets
   fw_private_ip_address = each.value.fw_private_ip_address
   dns_servers           = each.value.dns_servers
+  depends_on = [module.foundation]
+}
+module "network" {
+  source                = "app.terraform.io/cloud-castles/network/azurerm"
+  version               = "1.0.2"
+  for_each = {
+    for key, value in local.network_settings.vnets :
+    key => value
+  }
   for_each = {
     for key, value in local.network_settings.route_tables :
     key => value
   }
   route_table_name      = each.key
   next_hop_type         = each.value.route_tables.disable_bgp_route_propagation
+  depends_on = [module.foundation]
+}
+
+module "network" {
+  source                = "app.terraform.io/cloud-castles/network/azurerm"
+  version               = "1.0.2"
+  for_each = {
+    for key, value in local.network_settings.vnets :
+    key => value
+  }
   for_each = {
     for key, value in local.network_settings.routes :
     key => value
