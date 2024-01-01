@@ -19,25 +19,32 @@ module "foundation" {
 module "network" {
   source                = "app.terraform.io/cloud-castles/network/azurerm"
   version               = "1.0.2"
-  vnets = local.network_settings
-  # for_each = {
-  #   for key, value in local.network_settings.vnets :
-  #   key => value
-  # }
+  for_each = {
+    for key, value in local.network_settings.vnets :
+    key => value
+  }
   ###########################################################
   # Import inputs from previous Modules
   ###########################################################
-  # resource_group = module.foundation[each.value.targetResourceGroup].resource_group_name
-  # location       = module.foundation[each.value.targetResourceGroup].resource_group_location
+  resource_group = module.foundation[each.value.targetResourceGroup].resource_group_name
+  location       = module.foundation[each.value.targetResourceGroup].resource_group_location
   ###########################################################
-  # vnet_name             = each.key
-  # address_space         = each.value.address_space
-  # subnets               = each.value.subnets
-  # fw_private_ip_address = each.value.fw_private_ip_address
-  # dns_servers           = each.value.dns_servers
-  # route_table_name      = each.value.subnets.routeTableName
-  # next_hop_type         = each.value.subnets.routeTableName
-  # vpngw_rt_routes       = each.value.vpngw_rt_routes
+  vnet_name             = each.key
+  address_space         = each.value.address_space
+  subnets               = each.value.subnets
+  fw_private_ip_address = each.value.fw_private_ip_address
+  dns_servers           = each.value.dns_servers
+  for_each = {
+    for key, value in local.network_settings.route_tables :
+    key => value
+  }
+  route_table_name      = each.key
+  next_hop_type         = each.value.route_tables.disable_bgp_route_propagation
+  for_each = {
+    for key, value in local.network_settings.routes :
+    key => value
+  }
+  routes               = each.value.routes
 
   depends_on = [module.foundation]
 }

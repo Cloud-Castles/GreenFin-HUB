@@ -20,33 +20,47 @@
           "subnetNamePrefix": "10.60.0.64/26",
           "routeTableName": "vpngw-rt"
         }
-      ],
-      "routes": {
-        "vpngw_rt_routes": [
-          {
-            "routeName": "override_route_to_hub",
-            "routeAddressPrefix": "10.60.0.0/24",
-            "next_hop_type": "VirtualAppliance"
-          },
-          {
-            "routeName": "override_route_to_spoke_f5",
-            "routeAddressPrefix": "10.60.4.0/22",
-            "next_hop_type": "VirtualAppliance"
-          },
-          {
-            "routeName": "override_route_to_spoke_monitor",
-            "routeAddressPrefix": "10.60.1.0/24",
-            "next_hop_type": "VirtualAppliance"
-          }
-        ],
-        "route_to_internet": [
-          {
-            "routeName": "route_to_internet",
-            "routeAddressPrefix": "0.0.0.0/0",
-            "next_hop_type": "Internet"
-          }
-        ]
-      }
+      ]
     }
+  },
+  "route_tables": {
+    "vpngw_rt_routes": {
+      "targetVnet": "hub-vnet",
+      "disable_bgp_route_propagation": "false"
+    },
+    "fw_rt": {
+      "targetVnet": "hub-vnet",
+      "disable_bgp_route_propagation": "false"
+    }
+  }, 
+  "routes": {
+    "vpngw_rt_routes": [
+      {
+        "targetRoutetable": "vpngw_rt_routes",
+        "routeName": "override_route_to_hub",
+        "routeAddressPrefix": "10.60.0.0/24",
+        "next_hop_type": "VirtualAppliance"
+      },
+      {
+        "targetRoutetable": "vpngw_rt_routes",
+        "routeName": "override_route_to_spoke_f5",
+        "routeAddressPrefix": "10.60.4.0/22",
+        "next_hop_type": "VirtualAppliance"
+      },
+      {
+        "targetRoutetable": "vpngw_rt_routes",
+        "routeName": "override_route_to_spoke_monitor",
+        "routeAddressPrefix": "10.60.1.0/24",
+        "next_hop_type": "VirtualAppliance"
+      }
+    ],
+    "fw_rt": [
+      {
+        "targetRoutetable": "fw_rt",
+        "routeName": "route_to_internet",
+        "routeAddressPrefix": "0.0.0.0/0",
+        "next_hop_type": "Internet"
+      }
+    ]
   }
 }
