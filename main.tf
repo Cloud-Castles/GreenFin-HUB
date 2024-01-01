@@ -35,7 +35,7 @@ module "network" {
   subnets               = each.value.subnets
   fw_private_ip_address = each.value.fw_private_ip_address
   dns_servers           = each.value.dns_servers
-  vpngw_rt_routes       = each.value.vpngw_rt_routes
+  # vpngw_rt_routes       = each.value.vpngw_rt_routes
 
   depends_on = [module.foundation]
 }
