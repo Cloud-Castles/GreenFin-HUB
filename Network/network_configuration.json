@@ -59,7 +59,8 @@
             "routeName": "route_to_internet",
             "targetRoutetable": "fw_rt",
             "routeAddressPrefix": "0.0.0.0/0",
-            "next_hop_type": "Internet"
+            "next_hop_type": "Internet",
+            "next_hop_in_ip_address": ""
           }
         ]
     }
