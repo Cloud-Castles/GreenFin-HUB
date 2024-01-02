@@ -12,24 +12,24 @@
       "subnets": [
         {
           "subnetName": "AzureFirewallSubnet",
-          "subnetNamePrefix": "10.60.0.0/26",
-          "routeTableName": "fw-rt"
+          "subnetNamePrefix": "10.60.0.0/26"
         },
         {
           "subnetName": "GatewaySubnet",
-          "subnetNamePrefix": "10.60.0.64/26",
-          "routeTableName": "vpngw-rt"
+          "subnetNamePrefix": "10.60.0.64/26"
         }
       ],
       "route_tables": [
         {
           "routeTableName":"vpngw_rt_routes",
           "targetVnet": "hub-vnet",
+          "targetSubnet": "GatewaySubnet",
           "disable_bgp_route_propagation": "false"
         },
         {
           "routeTableName":"fw_rt",
           "targetVnet": "hub-vnet",
+          "targetSubnet": "AzureFirewallSubnet",
           "disable_bgp_route_propagation": "false"
         }
       ],
