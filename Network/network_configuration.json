@@ -39,21 +39,21 @@
             "targetRoutetable": "vpngw_rt_routes",
             "routeAddressPrefix": "10.60.0.0/24",
             "next_hop_type": "VirtualAppliance",
-            "fw_private_ip_address": "10.60.0.4"
+            "next_hop_in_ip_address": "10.60.0.4"
           },
           {
             "routeName": "override_route_to_spoke_f5",
             "targetRoutetable": "vpngw_rt_routes",
             "routeAddressPrefix": "10.60.4.0/22",
             "next_hop_type": "VirtualAppliance",
-            "fw_private_ip_address": "10.60.0.4"
+            "next_hop_in_ip_address": "10.60.0.4"
           },
           {
             "routeName": "override_route_to_spoke_monitor",
             "targetRoutetable": "vpngw_rt_routes",
             "routeAddressPrefix": "10.60.1.0/24",
             "next_hop_type": "VirtualAppliance",
-            "fw_private_ip_address": "10.60.0.4"
+            "next_hop_in_ip_address": "10.60.0.4"
           },
           {
             "routeName": "route_to_internet",
