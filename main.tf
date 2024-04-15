@@ -69,6 +69,7 @@ module "fw" {
   depends_on = [module.network]
 }
 
+#123
 # module "vpngw" {
 #   source                  = "app.terraform.io/cloud-castles/vpngw/azurerm"
 #   version                 = "1.0.3"
